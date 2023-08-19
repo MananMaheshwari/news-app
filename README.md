@@ -29,10 +29,10 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 
 ## Features: 
-search filter for news
+-> search filter for news
 
-Cache managment for offline availability
+-> Cache managment for offline availability
 
-Google Sign in funcionality
+-> Google Sign in funcionality
 
-News view access to logged-in user only
+-> News view access to logged-in user only
