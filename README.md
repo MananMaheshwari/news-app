@@ -19,13 +19,20 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Endpoints
-"/" shows news here.
+"/" shows news here
+
 "/login" login page
+
 "/signin" signin page
+
 "/details" detail of a specific news whose data is encoded in url search parameter
+
 
 ## Features: 
 search filter for news
+
 Cache managment for offline availability
+
 Google Sign in funcionality
+
 News view access to logged-in user only
