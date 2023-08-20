@@ -18,17 +18,21 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Endpoints
+"/" shows news here
 
-To learn more about Next.js, take a look at the following resources:
+"/login" login page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+"/signin" signin page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+"/details" detail of a specific news whose data is encoded in url search parameter
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features: 
+-> search filter for news
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-> Cache managment for offline availability
+
+-> Google Sign in funcionality
+
+-> News view access to logged-in user only
