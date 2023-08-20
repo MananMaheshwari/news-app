@@ -25,9 +25,6 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 "/signin" signin page
 
-"/details" detail of a specific news whose data is encoded in url search parameter
-
-
 ## Features: 
 -> search filter for news
 
@@ -36,3 +33,5 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 -> Google Sign in funcionality
 
 -> News view access to logged-in user only
+
+-> Click on the news and on the right side of the page an element containing the details will appear.
