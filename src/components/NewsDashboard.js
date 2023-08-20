@@ -5,7 +5,7 @@ import { BsGrid3X3GapFill, BsHeart, BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
-import { collection,addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 
 
 function classNames(...classes) {
@@ -13,7 +13,7 @@ function classNames(...classes) {
 }
 
 const NewsDashboard = ({ initialData }) => {
-    const router=useRouter();
+    const router = useRouter();
     console.log("initial data: ", initialData);
     console.log("next public key: ", process.env.NEXT_PUBLIC_KEY);
     const [data, setData] = useState(initialData);
@@ -34,9 +34,10 @@ const NewsDashboard = ({ initialData }) => {
             setData(newData);
             sessionStorage.setItem(JSON.stringify(url), JSON.stringify(newData));
         });
-        
+
     }, []);
 
+    const [details, setDetails] = useState(null);
     const [isGrid, setIsGrid] = useState(false);
     const [searchFor, setSearchFor] = useState("top-headlines");
     const [searchParam, setSearchParam] = useState({
@@ -79,7 +80,7 @@ const NewsDashboard = ({ initialData }) => {
         }
         else {
             fetchData(query).then((newData) => {
-                if(newData.status==="error"){
+                if (newData.status === "error") {
                     toast.error(newData.message, {
                         position: "top-center"
                     })
@@ -90,10 +91,13 @@ const NewsDashboard = ({ initialData }) => {
             });
         }
     }
-    const showDetails=(article)=>{
-        const encodedData=encodeURIComponent(JSON.stringify(article));
-        const url=`/details?data=${encodedData}`;
-        window.open(url, '_blank');
+    const showDetails = (article) => {
+        if (details && details.title == article.title) {
+            setDetails(null);
+        }
+        else {
+            setDetails(article);
+        }
     }
 
     return (
@@ -151,32 +155,49 @@ const NewsDashboard = ({ initialData }) => {
                 </div>
                 <button className='' onClick={searchSubmit}><BsSearch /></button>
             </form>
-            <div className='p-4 w-1/2 ' >
-                <div>
+            <div>
+                <button onClick={changeGrid} ><BsGrid3X3GapFill /></button>
+            </div>
+            <div className='md:flex'>
 
-                </div>
-                <div>
-                    <button onClick={changeGrid} ><BsGrid3X3GapFill /></button>
-                </div>
+                <div className='md:flex-1 p-4 w-1/2 ' >
 
-                <div className='flex'>
-                    <div className={classNames(isGrid ? "grid-cols-4 gap-4" : "grid-cols-2 gap-4", "p-4 grid ")}>
-                        {data && data.articles.map((article) => {
-                            return (
-                                <div onClick={()=>showDetails(article)} className='rounded-md border border-white p-2 text-white'>
-                                    <div className={classNames(isGrid ? "mx-auto h-full" : "grid grid-cols-7 gap-2")}>
-                                        <img className='h-16 w-full col-span-2' src={article.urlToImage} />
-                                        <div className='col-span-4'>
-                                            <p className='font-bold text-center h-3/4'>{article.title}</p>
-                                            <p className='text-right h-1/4'><cite>{article.source.name}</cite></p>
+                    <div className='flex'>
+                        <div className={classNames(isGrid ? "grid-cols-4 gap-4" : "grid-cols-2 gap-4", "p-4 grid ")}>
+                            {data && data.articles.map((article) => {
+                                return (
+                                    <div onClick={() => showDetails(article)} className={classNames(isGrid ? "h-60" : "h-40", (details && details.title == article.title) ? "border border-red-500" : "border border-white", 'special rounded-md  p-2 text-white')}>
+                                        <div className={classNames(isGrid ? "overflow-hidden mx-auto h-4/5" : "grid h-4/5 overflow-hidden grid-cols-7 gap-2")}>
+                                            <img className={classNames(isGrid ? "h-1/3" : "h-full", ' w-full col-span-2')} src={article.urlToImage} />
+                                            <div className='col-span-5'>
+                                                <p className='font-bold text-center h-3/4'>{article.title}</p>
+                                                <p className='text-right h-1/4'><cite>{article.source.name}</cite></p>
+                                            </div>
                                         </div>
-                                        <div className='flex items-center justify-center'>
-                                            <button  className='' ><BsHeart className='h-6 w-6' /></button>
+                                        <div className='flex items-center justify-center m-auto h-1/5 p-4'>
+                                            <button className='' ><BsHeart className='h-6 w-6' /></button>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div>
+                <div className='flex md:flex-1 w-1/3 mx-auto relative top-0 h-100% text-white p-8 justify-center '>
+                    <div className={classNames(details?"block":"hidden",'card w-1/3 fixed h-96')}>
+                        <div className={classNames('box animated-border glowing-element front rounded-lg flex items-center ')}>
+                            <p className='font-bold text-white w-full text-center'>Hover To View Details ! </p>
+                        </div>
+                        {details && 
+                        <div className='animated-border box p-4 back rounded-lg my-auto overflow-hidden'>
+                            <p className='p-2'><span className='font-bold underline mr-2'>Title: </span>{details.title}</p>
+                            <p className='p-2'><span className='font-bold underline mr-2'>Description: </span>{details.description}</p>
+                            <p className='p-2'><span className='font-bold underline mr-2'>Source: </span>{details.source.name}</p>
+                            <p className='p-2'><span className='font-bold underline mr-2'>Author: </span>{details.author}</p>
+                            <p className='p-2'><span className='font-bold underline mr-2'>Published On: </span>{details.publishedAt}</p>
+                            <p className='p-2 font-bold text-center'><a className='bg-red-500 p-2 rounded-md' href={details.url} target="_blank">Read Full Content</a></p>
+     
+                        </div>}
                     </div>
                 </div>
             </div>

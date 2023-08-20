@@ -2,10 +2,144 @@
 @tailwind components;
 @tailwind utilities;
 
-.main-content{
+.main-content {
     background-image: url(../images/img2.webp);
     background-size: contain;
     background-repeat: repeat;
-    background-color: rgba(0, 0, 0, 0.7); 
-    background-blend-mode:color-burn
+    background-color: rgba(0, 0, 0, 0.7);
+    background-blend-mode: color-burn
+}
+
+.card {
+    width: 500px;
+    /* height: 400px; */
+    transform-style: preserve-3d;
+    perspective: 600px;
+    transition: 0.5s;
+}
+
+.special:hover+.flex-1 .card .front {
+    border: 1px solid white;
+}
+
+.front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: 0.5s;
+}
+
+.card:hover .front {
+    transform: rotateY(-180deg);
+}
+
+.back {
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    transition: 0.5s;
+
+
+}
+
+.card:hover .back {
+    transform: rotateY(0deg);
+}
+
+/* .box{ */
+/* overflow: hidden; */
+/* position: relative; */
+/* } */
+/* .box::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#00ccff, #d400d4);
+    animation: animate 4s linear infinite;
+    z-index: -1;
+}
+
+.box::after{
+    content: '';
+    position: absolute;
+    inset: 4px;
+    opacity: 0;
+}
+
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+} */
+
+/* .glowing-element {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    animation: glow 5s infinite;
+    box-shadow: 1px 2px 1px rgba(0, 0, 255, 0.5);
+  }
+  
+  @keyframes glow {
+    0% {
+      box-shadow: 1px 2px 1px rgba(255, 0, 0, 0.5);
+    }
+    25%{
+        box-shadow: 1px 2px 1px rgba(255, 255, 0, 0.5);
+    }
+    50% {
+      box-shadow: 1px 2px 1px rgba(30, 255, 0, 0.7);
+    }
+    75% {
+        box-shadow: 1px 2px 1px rgba(0, 255, 242, 0.7);
+    }  
+    100% {
+      box-shadow: 1px 2px 1px rgba(0, 0, 255, 0.5);
+    }
+  } */
+
+.animated-border {
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    animation: borderAnimation 4s linear infinite;
+}
+
+@keyframes borderAnimation {
+
+    0% {
+        border-color: violet;
+    }
+
+    15% {
+        border-color: indigo;
+    }
+
+    30% {
+        border-color: blue;
+    }
+
+    45% {
+        border-color: green;
+    }
+
+    60% {
+        border-color: yellow;
+    }
+
+    80% {
+        border-color: orange;
+    }
+
+    100% {
+        border-color: red;
+    }
 }
