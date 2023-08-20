@@ -20,7 +20,7 @@ export default function Home() {
     }
   },[isLoading, authUser])
   return (
-    <main className="">
+    <main className="main-body">
       <Navbar/>
       <NewsDashboard/>
     </main>

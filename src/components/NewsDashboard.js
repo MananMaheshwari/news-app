@@ -4,12 +4,9 @@ import { useEffect, useState } from 'react';
 import { BsGrid3X3GapFill, BsHeart, BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { useAuth } from "../../connections/auth";
 
 import { collection,addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 
-
-const {isLoading, authUser, setAuthUser, signOut} =useAuth();
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -40,7 +37,7 @@ const NewsDashboard = ({ initialData }) => {
         
     }, []);
 
-    const [isGrid, setIsGrid] = useState(true);
+    const [isGrid, setIsGrid] = useState(false);
     const [searchFor, setSearchFor] = useState("top-headlines");
     const [searchParam, setSearchParam] = useState({
         country: "",
@@ -99,23 +96,20 @@ const NewsDashboard = ({ initialData }) => {
         window.open(url, '_blank');
     }
 
-    const addFavorite=()=>{
-        await 
-    }
     return (
-        <div>
-            <form className='flex mt-10 bg-red-600 h-fit p-2 rounded-lg'>
-                <div className='flex flex-1 flex-wrap'>
-                    <div className='flex-1'>
+        <div className='min-h-screen main-content px-4 py-10'>
+            <form className='py-4 flex flex-row font-bold  bg-black opacity-70 text-white h-fit p-2 rounded-lg'>
+                <div className='flex flex-row flex-wrap flex-initial flex-grow'>
+                    <div className='m-auto flex-initial'>
                         <label htmlFor='search'>Search For: </label>
-                        <select onChange={(e) => setSearchFor(e.target.value)} defaultValue="top-headlines" id="search" name="search">
+                        <select className='text-black' onChange={(e) => setSearchFor(e.target.value)} defaultValue="top-headlines" id="search" name="search">
                             <option value="everything">Everything</option>
                             <option value="top-headlines">Top-Headlines</option>
                         </select>
                     </div>
-                    <div className='flex-1 flex-wrap'>
+                    <div className='m-auto flex-initial'>
                         <label htmlFor='country'>Country: </label>
-                        <select id="country" defaultValue="" onChange={(e) => (setSearchParam({ ...searchParam, country: e.target.value }))}>
+                        <select className='text-black' id="country" defaultValue="" onChange={(e) => (setSearchParam({ ...searchParam, country: e.target.value }))}>
                             <option value="">--default--</option>
                             <option value="au">Australia</option>
                             <option value="br">Brazil</option>
@@ -125,13 +119,13 @@ const NewsDashboard = ({ initialData }) => {
                             <option value="us">USA</option>
                         </select>
                     </div>
-                    <div className='flex-1 flex-wrap'>
+                    <div className='m-auto flex-initial'>
                         <label htmlFor='keyword'>Keyword: </label>
-                        <input id="keyword" type="text" value={searchParam.q} onChange={(e) => (setSearchParam({ ...searchParam, q: e.target.value }))} />
+                        <input className='text-black' id="keyword" type="text" value={searchParam.q} onChange={(e) => (setSearchParam({ ...searchParam, q: e.target.value }))} />
                     </div>
-                    <div className='flex-1 flex-wrap'>
+                    <div className='m-auto flex-initial'>
                         <label htmlFor='sortBy'>Sort By:</label>
-                        <select defaultValue={searchParam.sortBy} id="sortBy" onChange={(e) => (setSearchParam({ ...searchParam, sortBy: e.target.value }))}>
+                        <select className='text-black' defaultValue={searchParam.sortBy} id="sortBy" onChange={(e) => (setSearchParam({ ...searchParam, sortBy: e.target.value }))}>
                             <option value="popularity">Popularity</option>
                             <option value="relevancy">Relevancy</option>
                             <option value="publishedAt">Date</option>
@@ -139,9 +133,9 @@ const NewsDashboard = ({ initialData }) => {
                     </div>
                     {
                         (searchFor === "top-headlines") ?
-                            <div className='flex-1 flex-wrap'>
+                            <div className='m-auto flex-initial'>
                                 <label htmlFor='category'>Category: </label>
-                                <select id="category" defaultValue="default" onChange={(e) => (setSearchParam({ ...searchParam, category: e.target.value }))}>
+                                <select className='text-black' id="category" defaultValue="default" onChange={(e) => (setSearchParam({ ...searchParam, category: e.target.value }))}>
                                     <option value="default">--default--</option>
                                     <option value="business">Business</option>
                                     <option value="entertainment">Entertainment</option>
@@ -155,9 +149,9 @@ const NewsDashboard = ({ initialData }) => {
                             <div></div>
                     }
                 </div>
-                <button onClick={searchSubmit}><BsSearch /></button>
+                <button className='' onClick={searchSubmit}><BsSearch /></button>
             </form>
-            <div className='p-4 w-2/3 mx-auto' >
+            <div className='p-4 w-1/2 ' >
                 <div>
 
                 </div>
@@ -169,7 +163,7 @@ const NewsDashboard = ({ initialData }) => {
                     <div className={classNames(isGrid ? "grid-cols-4 gap-4" : "grid-cols-2 gap-4", "p-4 grid ")}>
                         {data && data.articles.map((article) => {
                             return (
-                                <div onClick={()=>showDetails(article)} className='rounded-md border-2 border-gray-200 p-2 bg-gray-100'>
+                                <div onClick={()=>showDetails(article)} className='rounded-md border border-white p-2 text-white'>
                                     <div className={classNames(isGrid ? "mx-auto h-full" : "grid grid-cols-7 gap-2")}>
                                         <img className='h-16 w-full col-span-2' src={article.urlToImage} />
                                         <div className='col-span-4'>
@@ -177,7 +171,7 @@ const NewsDashboard = ({ initialData }) => {
                                             <p className='text-right h-1/4'><cite>{article.source.name}</cite></p>
                                         </div>
                                         <div className='flex items-center justify-center'>
-                                            <button onClick={addFavorite} className='' ><BsHeart className='h-6 w-6' /></button>
+                                            <button  className='' ><BsHeart className='h-6 w-6' /></button>
                                         </div>
                                     </div>
                                 </div>

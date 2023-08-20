@@ -2,4 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.main-content{
+    background-image: url(../images/img2.webp);
+    background-size: contain;
+    background-repeat: repeat;
+    background-color: rgba(0, 0, 0, 0.7); 
+    background-blend-mode:color-burn
+}

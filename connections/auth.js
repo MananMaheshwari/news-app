@@ -27,7 +27,6 @@ export default function useFirebaseAuth(){
         }
     }
 
-
     const signOut=async()=>{
         authSignOut(auth).then(()=>clear()).catch((err)=>console.log(err));
     }
@@ -37,8 +36,8 @@ export default function useFirebaseAuth(){
     },[])
 
     return {
-        authUser,isLoading, setAuthUser, signOut
-    }
+        authUser, isLoading, setAuthUser, signOut,
+    };
 }
 
 export const AuthUserProvider=({children})=>{
@@ -50,4 +49,6 @@ export const AuthUserProvider=({children})=>{
     )
 }
 
-export const useAuth=()=>useContext(AuthUserContext);  
+export const useAuth=()=>{
+   return useContext(AuthUserContext);
+}  
