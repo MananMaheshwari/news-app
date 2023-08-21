@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { BsHeart } from "react-icons/bs";
+import { useAuth } from '../../connections/auth'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -21,7 +22,11 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const router = useRouter();
+  const {signOut}=useAuth();
 
+  const loggingOut=()=>{
+    signOut();
+  }
   return (
     <Disclosure as="nav" className="" style={{backgroundColor: "#323333"}}>
       {({ open }) => (

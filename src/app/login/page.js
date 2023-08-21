@@ -55,7 +55,7 @@ const Page = () => {
 
         } catch (err) {
             console.log("error: ", err);
-            toast.error("Error Logging In", {
+            toast.error("Wrong Credentials", {
                 position: "top-center"
             });
         }

@@ -19,7 +19,6 @@ const NewsDashboard = ({ initialData }) => {
     const [data, setData] = useState(initialData);
 
     useEffect(() => {
-        console.log("useEffect");
         const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEXT_PUBLIC_KEY}`
         const storedData = sessionStorage.getItem(JSON.stringify(url));
 

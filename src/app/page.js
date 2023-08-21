@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../connections/auth";
 import { collection,addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } from "firebase/firestore";
 import Navbar from "@/components/Navbar";
-import NewsDashboard from "@/components/NewsDashboard";
-
+import NewsDashboard from "@/components/NewsDashboard"
 
 export default function Home() {
 
@@ -15,7 +14,6 @@ export default function Home() {
     console.log(isLoading)
     console.log(authUser)
     if(!isLoading && !authUser){
-      
         router.push("/login")
     }
   },[isLoading, authUser])
