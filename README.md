@@ -1,8 +1,12 @@
+## Project Preview
+https://github.com/MananMaheshwari/news-app/assets/58635357/aaacabc0-96ab-4d2a-95cc-68088d0a7866
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
+
 
 ```bash
 npm run dev
