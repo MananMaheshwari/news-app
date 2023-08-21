@@ -41,7 +41,7 @@ const NewsDashboard = ({ initialData }) => {
     const [isGrid, setIsGrid] = useState(false);
     const [searchFor, setSearchFor] = useState("top-headlines");
     const [searchParam, setSearchParam] = useState({
-        country: "",
+        country: "us",
         category: "",
         // sources: null,
         q: "",
@@ -106,14 +106,14 @@ const NewsDashboard = ({ initialData }) => {
                 <div className='flex flex-row flex-wrap flex-initial flex-grow'>
                     <div className='m-auto flex-initial'>
                         <label htmlFor='search'>Search For: </label>
-                        <select className='text-black' onChange={(e) => setSearchFor(e.target.value)} defaultValue="top-headlines" id="search" name="search">
+                        <select className='text-black' onChange={(e) => {setSearchFor(e.target.value);(e.target.value==="everything")?setSearchParam({...searchParam, country: ""}):setSearchParam({...searchParam, country: "us"}) }} defaultValue="top-headlines" id="search" name="search">
                             <option value="everything">Everything</option>
                             <option value="top-headlines">Top-Headlines</option>
                         </select>
                     </div>
                     <div className='m-auto flex-initial'>
                         <label htmlFor='country'>Country: </label>
-                        <select className='text-black' id="country" defaultValue="" onChange={(e) => (setSearchParam({ ...searchParam, country: e.target.value }))}>
+                        <select className='text-black' id="country" value={searchParam.country}  onChange={(e) => (setSearchParam({ ...searchParam, country: e.target.value }))}>
                             <option value="">--default--</option>
                             <option value="au">Australia</option>
                             <option value="br">Brazil</option>
@@ -186,7 +186,7 @@ const NewsDashboard = ({ initialData }) => {
                 <div className='flex md:flex-1 w-1/3 mx-auto relative top-0 h-100% text-white p-8 justify-center '>
                     <div className={classNames(details?"block":"hidden",'card w-1/3 fixed h-96')}>
                         <div className={classNames('box animated-border front rounded-lg flex items-center ')}>
-                            <p className='font-bold text-white w-full text-center underline underline-offset-4 decoration-dashed'>Hover To View Details ! </p>
+                            <p className='font-bold text-white w-full text-center underline underline-offset-4 '>Hover To View Details ! </p>
                         </div>
                         {details && 
                         <div className='animated-border box p-4 back rounded-lg my-auto overflow-hidden'>
