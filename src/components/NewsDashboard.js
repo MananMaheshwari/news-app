@@ -185,18 +185,21 @@ const NewsDashboard = ({ initialData }) => {
                 </div>
                 <div className='flex md:flex-1 w-1/3 mx-auto relative top-0 h-100% text-white p-8 justify-center '>
                     <div className={classNames(details?"block":"hidden",'card w-1/3 fixed h-96')}>
-                        <div className={classNames('box animated-border glowing-element front rounded-lg flex items-center ')}>
-                            <p className='font-bold text-white w-full text-center'>Hover To View Details ! </p>
+                        <div className={classNames('box animated-border front rounded-lg flex items-center ')}>
+                            <p className='font-bold text-white w-full text-center underline underline-offset-4 decoration-dashed'>Hover To View Details ! </p>
                         </div>
                         {details && 
                         <div className='animated-border box p-4 back rounded-lg my-auto overflow-hidden'>
+                            <div className='h-4/5 overflow-hidden'>
                             <p className='p-2'><span className='font-bold underline mr-2'>Title: </span>{details.title}</p>
                             <p className='p-2'><span className='font-bold underline mr-2'>Description: </span>{details.description}</p>
                             <p className='p-2'><span className='font-bold underline mr-2'>Source: </span>{details.source.name}</p>
                             <p className='p-2'><span className='font-bold underline mr-2'>Author: </span>{details.author}</p>
                             <p className='p-2'><span className='font-bold underline mr-2'>Published On: </span>{details.publishedAt}</p>
-                            <p className='p-2 font-bold text-center'><a className='bg-red-500 p-2 rounded-md' href={details.url} target="_blank">Read Full Content</a></p>
-     
+                            </div>
+                            <div className='h-1/5 flex items-center justify-center'>
+                                <p className='p-2 font-bold text-center'><a className='bg-red-500 p-2 rounded-md' href={details.url} target="_blank">Read Full Content</a></p>
+                            </div>
                         </div>}
                     </div>
                 </div>

@@ -109,8 +109,45 @@
 .animated-border {
     width: 100%;
     height: 100%;
-    border: 2px solid transparent;
+    border: 4px solid transparent;
     animation: borderAnimation 5s linear infinite;
+}
+.front p{
+    color: transparent;
+    animation: colorAnimation 5s linear infinite;
+}
+
+@keyframes colorAnimation{
+    0% {
+        color: rgb(255, 0, 255);
+    }
+
+    15% {
+        color: rgb(149, 0, 255);
+    }
+
+    30% {
+        color: blue;
+    }
+
+    45% {
+        color: rgb(13, 255, 13);
+    }
+
+    60% {
+        color: yellow;
+    }
+
+    75% {
+        color: orange;
+    }
+
+    90% {
+        color: red;
+    }
+    100% {
+        color: rgb(255, 0, 255);
+    }  
 }
 
 @keyframes borderAnimation {
