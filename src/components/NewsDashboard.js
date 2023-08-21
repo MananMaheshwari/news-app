@@ -163,9 +163,9 @@ const NewsDashboard = ({ initialData }) => {
 
                     <div className='flex'>
                         <div className={classNames(isGrid ? "grid-cols-4 gap-4" : "grid-cols-2 gap-4", "p-4 grid ")}>
-                            {data && data.articles.map((article) => {
+                            {data && data.articles.map((article,idx) => {
                                 return (
-                                    <div onClick={() => showDetails(article)} className={classNames(isGrid ? "h-60" : "h-40", (details && details.title == article.title) ? "border border-red-500" : "border border-white", 'special rounded-md  p-2 text-white')}>
+                                    <div key={idx} onClick={() => showDetails(article)} className={classNames(isGrid ? "h-60" : "h-40", (details && details.title == article.title) ? "border border-red-500" : "border border-white", 'special rounded-md  p-2 text-white')}>
                                         <div className={classNames(isGrid ? "overflow-hidden mx-auto h-4/5" : "grid h-4/5 overflow-hidden grid-cols-7 gap-2")}>
                                             <img className={classNames(isGrid ? "h-1/3" : "h-full", ' w-full col-span-2')} src={article.urlToImage} />
                                             <div className='col-span-5'>

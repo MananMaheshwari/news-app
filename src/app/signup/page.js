@@ -152,7 +152,7 @@ const Page = () => {
                     <button onClick={googleSignIn} className="rounded-lg bg-gray-200 w-full my-4 p-1.5" ><FcGoogle className="inline-block"/> Sign in with Google</button>
 
                     <p className="mt-4 text-center text-sm text-gray-500">
-                        Already a user?{' '}
+                        Already a user?{" "}
                         <Link href="/login" className="font-semibold leading-6 text-cyan-500 hover:text-indigo-500 hover:underline">
                             Login
                         </Link>
