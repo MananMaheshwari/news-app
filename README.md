@@ -27,7 +27,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 "/login" login page
 
-"/signin" signin page
+"/signup" signup page
 
 ## Features: 
 -> search filter for news
